@@ -1,0 +1,95 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'EmployeeDataTable', 
+    typeNamePlural: 'EmployeeDataTables', 
+    title: {
+      type: #STANDARD, 
+      label: 'Employee Data Table', 
+      value: 'EmployeeId'
+    }
+  }
+}
+annotate view ZC_DXSM30AUTO with
+{
+  @UI.identification: [ {
+    position: 1 
+  } ]
+  @UI.lineItem: [ {
+    position: 1 
+  }, 
+  {
+    type: #FOR_ACTION, 
+    dataAction: 'Copy', 
+    label: 'Copy Selected Entry', 
+    invocationGrouping: #CHANGE_SET
+  } ]
+  @UI.facet: [ {
+    id: 'ZI_DXSM30AUTO', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Employee Data Table', 
+    position: 1 
+  } ]
+  EmployeeId;
+  
+  @UI.identification: [ {
+    position: 2 , 
+    label: 'FirstName'
+  } ]
+  @UI.lineItem: [ {
+    position: 2 , 
+    label: 'FirstName'
+  } ]
+  FirstName;
+  
+  @UI.identification: [ {
+    position: 3 , 
+    label: 'LastName'
+  } ]
+  @UI.lineItem: [ {
+    position: 3 , 
+    label: 'LastName'
+  } ]
+  LastName;
+  
+  @UI.identification: [ {
+    position: 4 , 
+    label: 'Department'
+  } ]
+  @UI.lineItem: [ {
+    position: 4 , 
+    label: 'Department'
+  } ]
+  Department;
+  
+  @UI.identification: [ {
+    position: 5 , 
+    label: 'JoiningDate'
+  } ]
+  @UI.lineItem: [ {
+    position: 5 , 
+    label: 'JoiningDate'
+  } ]
+  JoiningDate;
+  
+  @UI.identification: [ {
+    position: 6 , 
+    label: 'IsActive'
+  } ]
+  @UI.lineItem: [ {
+    position: 6 , 
+    label: 'IsActive'
+  } ]
+  IsActive;
+  
+  @UI.identification: [ {
+    position: 7 , 
+    label: 'ChangedBy'
+  } ]
+  @UI.lineItem: [ {
+    position: 7 , 
+    label: 'ChangedBy'
+  } ]
+  ChangedBy;
+}

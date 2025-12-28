@@ -1,0 +1,5 @@
+CLASS zcl_bp_i_dxbooksupp DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_dxtravel.
+ENDCLASS.
+
+CLASS zcl_bp_i_dxbooksupp IMPLEMENTATION.
+ENDCLASS.

@@ -1,0 +1,5 @@
+CLASS zbp_cl_dxbooking_d DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_dxtravel_d.
+ENDCLASS.
+
+CLASS zbp_cl_dxbooking_d IMPLEMENTATION.
+ENDCLASS.

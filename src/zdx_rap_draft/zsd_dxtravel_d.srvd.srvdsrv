@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service defination draft'
+define service ZSD_DXTRAVEL_D {
+  expose ZC_DXTRAVEL_D;
+  expose ZC_DXBOOKING_D;
+  expose ZC_DXBOOKSUPL_D;
+}

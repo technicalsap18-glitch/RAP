@@ -1,0 +1,5 @@
+@EndUserText.label: 'Travel defination'
+define service ZSD_DXTRAVEL_U {
+  expose ZC_DXTRAVEL_U;
+  expose ZC_DXBOOKING_U;
+}

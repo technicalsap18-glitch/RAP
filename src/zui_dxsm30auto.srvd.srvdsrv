@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZC_DXSM30AUTO_S'
+define service ZUI_DXSM30AUTO {
+  expose ZC_DXSM30AUTO_S as EmployeeDataTablAll;
+  expose ZC_DXSM30AUTO as EmployeeDataTable;
+}

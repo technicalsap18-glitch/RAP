@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service defination'
+define service ZUI_Fight {
+  expose ZI_CONNECTION_DX;
+  expose ZI_FLIGHT_DX;
+}

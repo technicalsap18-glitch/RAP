@@ -1,0 +1,31 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_DXTRAVEL //alias <alias_name>
+use etag
+{
+  use create;
+  use update;
+  use delete;
+  use action CopyTravel;
+
+  use association _Booking { create; }
+}
+
+define behavior for ZC_DXBOOKING //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+  use association _Booksupp { create; }
+}
+
+define behavior for ZC_DXbooksupp //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Travel;
+  use association _Booking;
+}

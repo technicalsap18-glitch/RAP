@@ -1,0 +1,55 @@
+managed implementation in class zbp_i_sm30singleton_s unique;
+strict ( 2 );
+with draft;
+
+define behavior for Zi_SM30Singleton_S //alias <alias_name>
+//persistent table <???>
+with unmanaged save
+draft table zdt_empsingleton
+lock master
+total etag maxChangedat
+authorization master ( instance )
+//etag master <field_name>
+{
+//  create ( authorization : global );
+//  update;
+//  delete;
+  field ( readonly ) EmpSingleton;
+  association _emp { create; }
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+}
+
+define behavior for ZI_DXSM30 //alias <alias_name>
+persistent table zdx_sm30_t
+draft table zdt_employee_ram
+lock dependent by _sEmp
+authorization dependent by _sEmp
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+  field ( mandatory : create, readonly : update ) EmployeeId;
+  field ( readonly ) EmpSingleton, ChangedAt, ChangedBy, LocalLastChangedAt;
+  field ( mandatory ) FirstName;
+  association _sEmp { with draft; }
+
+
+   mapping for zdx_sm30_t
+    {
+      EmployeeId         = employee_id;
+      FirstName          = first_name;
+      LastName           = last_name;
+      Department         = department;
+      JoiningDate        = joining_date;
+      IsActive           = is_active;
+      ChangedBy          = changed_by;
+      ChangedAt          = changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+}

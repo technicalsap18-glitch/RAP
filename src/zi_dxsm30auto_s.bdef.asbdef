@@ -1,0 +1,93 @@
+managed with additional save implementation in class ZBP_I_DXSM30AUTO_S unique;
+strict;
+with draft;
+define behavior for ZI_DXSM30AUTO_S alias EmployeeDataTablAll
+draft table ZDX_SM30_TB_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( features : instance )
+   TransportRequestID;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit with additional implementation;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare {
+    validation EmployeeDataTable ~ ValidateDataConsistency;
+  }
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _EmployeeDataTable { create ( features : instance ); with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; }
+
+  side effects
+  {
+    action SelectCustomizingTransptReq affects
+        $self;
+  }
+
+}
+
+define behavior for ZI_DXSM30AUTO alias EmployeeDataTable ##UNMAPPED_FIELD
+persistent table ZDX_SM30_TBC1
+draft table ZDX_SM30_TBC1_D
+etag master LocalLastChangedAt
+lock dependent by _EmployeeDataTablAll
+authorization dependent by _EmployeeDataTablAll
+{
+  field ( mandatory : create )
+   EmployeeId;
+
+  field ( readonly )
+   SingletonID,
+   LocalLastChangedAt,
+   ChangedAt;
+
+  field ( readonly : update )
+   EmployeeId;
+
+  field ( notrigger )
+   SingletonID,
+   LocalLastChangedAt,
+   ChangedAt;
+
+
+  update( features : global );
+  delete( features : global );
+
+  factory action ( features : instance ) Copy parameter ZD_CopySM30AUTO [1];
+
+  mapping for ZDX_SM30_TBC1
+  {
+    EmployeeId = EMPLOYEE_ID;
+    FirstName = FIRST_NAME;
+    LastName = LAST_NAME;
+    Department = DEPARTMENT;
+    JoiningDate = JOINING_DATE;
+    IsActive = IS_ACTIVE;
+    ChangedBy = CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    ChangedAt = CHANGED_AT;
+  }
+
+  association _EmployeeDataTablAll { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+  validation ValidateDataConsistency on save { create; update; }
+
+}

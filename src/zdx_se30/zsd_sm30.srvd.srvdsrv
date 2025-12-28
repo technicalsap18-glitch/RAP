@@ -1,0 +1,5 @@
+@EndUserText.label: 'SD'
+define service ZSD_SM30 {
+  expose ZC_SM30SINGLETON_S;
+  expose ZC_DXSM30;
+}
